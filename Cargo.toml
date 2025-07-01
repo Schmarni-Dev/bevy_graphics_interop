@@ -1,0 +1,22 @@
+[package]
+name = "bevy_graphics_interop"
+version = "0.1.0"
+edition = "2024"
+
+[features]
+default = ["vulkan"]
+vulkan = ["dep:ash", "dep:wgpu", "dep:android_system_properties"]
+
+[dependencies]
+wgpu = { version = "24", optional = true, default-features = false }
+ash = { version = "0.38.0", default-features = false, optional = true }
+bevy_app = { version = "0.16.1", default-features = false }
+bevy_ecs = { version = "0.16.1", default-features = false }
+bevy_platform = { version = "0.16.1", default-features = false, features = [
+	"alloc",
+] }
+bevy_render = "0.16.1"
+thiserror = { version = "2.0.12", default-features = false }
+
+[target.'cfg(target_os = "android")'.dependencies]
+android_system_properties = { version = "0.1.5", optional = true }
